@@ -1,12 +1,15 @@
-import { ContactItem } from "./Contact__List.styled";
+import { ContactItem, DeleteBtn } from "./Contact__List.styled";
+import { BsFillBookmarkCheckFill } from "react-icons/bs";
 
-const ContactsList = ({ contacts } ) => {
+const ContactsList = ({ contacts, onDeleteContact } ) => {
   return (
     <ul>
       {contacts.map(({id, name, number}) => {
         return (
           <ContactItem key={id}>
+            <BsFillBookmarkCheckFill style={{ color: "blue", marginRight: "15px"}} />
             {name}: {number}
+            <DeleteBtn type="button" onClick={() => onDeleteContact(id)}>Delete</DeleteBtn>
           </ContactItem>
         )
       })}

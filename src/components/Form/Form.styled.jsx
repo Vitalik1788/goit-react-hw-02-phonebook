@@ -36,5 +36,6 @@ export const FormSubmitBtn = styled.button`
   background-color: blue;
   color: #fff;
   border: none;
-  border-radius: 50px;  
+  border-radius: 50px;
+  font-size: 16px;
 `
