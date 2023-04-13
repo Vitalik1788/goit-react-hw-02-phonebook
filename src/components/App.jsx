@@ -10,12 +10,11 @@ class App extends Component {
     contacts: [],
   }
 
-  addContact = (name) => {
-    console.log(name);
-
+  addContact = (name, number) => {
     const contact = {
       id: nanoid(),
       name,
+      number,
     }
 
     this.setState(prevState => ({

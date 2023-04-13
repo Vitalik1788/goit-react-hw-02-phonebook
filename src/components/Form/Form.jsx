@@ -1,9 +1,17 @@
 import React, { Component } from "react";
-import { FormContainer, FormLabel, FormNameInput, FormSubmitBtn } from './Form.styled';
+import {
+  FormContainer,
+  NameFormLabel,
+  FormNameInput,
+  FormSubmitBtn,
+  NumberFormLabel,
+  FormNumberInput,
+} from './Form.styled';
 
 class Form extends Component {
   state = {
     name: '',
+    number: '',
   }
 
   onInputChange = e => {
@@ -13,18 +21,21 @@ class Form extends Component {
 
   onSubmitForm = e => {
     e.preventDefault();
-    this.props.onFormSubmit(this.state.name);
+    const { name, number } = this.state;
+    this.props.onFormSubmit(name, number);
     this.reset();
   }
 
   reset = () => {
-    this.setState({ name: '' });
+    this.setState({
+      name: '',
+      number: '',});
   }
 
   render() {
     return (
       <FormContainer autoComplete="off" onSubmit={this.onSubmitForm}>
-        <FormLabel htmlFor="name"> Name </FormLabel>
+        <NameFormLabel htmlFor="name"> Name </NameFormLabel>
         <FormNameInput
               id='name'
               type="text"
@@ -36,8 +47,22 @@ class Form extends Component {
               placeholder="Enter name"
               onChange={this.onInputChange}
             />
+        <NumberFormLabel htmlFor="number">Phone number</NumberFormLabel>
+        <FormNumberInput
+          id='number'
+          type="tel"
+          name="number"
+          value={this.state.number}
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+          placeholder="Enter phone number"
+          onChange={this.onInputChange}
+        />
+
         <FormSubmitBtn type="submit">Add contact</FormSubmitBtn>
-        </FormContainer>
+        
+      </FormContainer>
     )
 
   }
