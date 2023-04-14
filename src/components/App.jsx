@@ -16,14 +16,18 @@ class App extends Component {
     ],
     filter: '',
   }
-
+  
   addContact = (name, number) => {
     const contact = {
       id: nanoid(),
       name,
       number,
     }
-    
+    const normalizedName = name.toLowerCase().trim();
+    if (this.state.contacts.find(contact => contact.name.toLowerCase() === normalizedName)) {
+      return alert(`${name} is already in contacts!`);
+    }
+
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts]
     }))

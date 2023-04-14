@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ContactItem, DeleteBtn } from "./Contact__List.styled";
 import { BsFillBookmarkCheckFill } from "react-icons/bs";
 
@@ -18,3 +19,11 @@ const ContactsList = ({ contacts, onDeleteContact } ) => {
 }
 
 export default ContactsList;
+
+ContactsList.propTypes = {
+  contacts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+  })),
+}

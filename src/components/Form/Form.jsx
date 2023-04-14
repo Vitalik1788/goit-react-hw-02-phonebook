@@ -64,10 +64,7 @@ class Form extends Component {
         
       </FormContainer>
     )
-
   }
-
 }
-
 
 export default Form;
