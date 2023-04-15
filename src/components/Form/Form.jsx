@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   FormContainer,
   NameFormLabel,
@@ -9,6 +10,11 @@ import {
 } from './Form.styled';
 
 class Form extends Component {
+
+  static propTypes = {
+    onFormSubmit: PropTypes.func.isRequired,
+  }
+
   state = {
     name: '',
     number: '',

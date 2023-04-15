@@ -7,6 +7,7 @@ import Filter from "./Filter/Filter";
 
 
 class App extends Component {
+
   state = {
     contacts: [
     {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
@@ -43,12 +44,17 @@ class App extends Component {
     }))
   }
 
+  onFilteredContact = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase().trim();
+    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
+    
+  }
+
 
   render() { 
-    const { contacts, filter } = this.state;
-
-    const normalizedFilter = this.state.filter.toLowerCase().trim();
-    const filteredContact = contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
+    const { filter } = this.state;    
+    const filteredContact = this.onFilteredContact();
 
     return (
     
@@ -62,9 +68,7 @@ class App extends Component {
 
         <Filter value={filter} onChange={this.onFilterChange}/>
 
-        <ContactsList contacts={filteredContact} onDeleteContact={this.deleteContact} />
-
-      
+        <ContactsList contacts={filteredContact} onDeleteContact={this.deleteContact} />      
       
       </Container>)
     
